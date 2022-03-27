@@ -36,13 +36,11 @@ justify-content: center;
 align-items: center;
 
 h2 {  
-  height: 110px;
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-size: 24px;
-	letter-spacing: 0.04em;
-  color: #293845;
-  padding-top: 20%;
+  text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-family: Roboto;
  
 }
 .filme {
