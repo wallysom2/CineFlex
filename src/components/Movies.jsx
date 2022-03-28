@@ -17,9 +17,9 @@ export default function Movies() {
 
     return (
         <>
-            <TopFilme>
+            <TopoFilme>
                 <p>Selecione o filme</p>
-            </TopFilme>
+            </TopoFilme>
             <Posters>
                 {Movies.map(filme =>
                 <Link to={`/filme/${filme.id}`}>
@@ -51,20 +51,20 @@ const Poster = styled.div`
     background: #FFFFFF;
     box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-img{
+    & img{
     width: 129px;
     height: 193px;
 }
 `
 
-const TopFilme = styled.div`
+const TopoFilme = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 110px;
     margin-top: 67px;
-p{
+    & p{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
