@@ -8,16 +8,16 @@ export default function Success(){
 
     return(
         <Confirmation>
-            <h2>Pedido feito com Success!</h2>
+            <h2>Pedido feito <br/>com sucesso!</h2>
             <div>
-                <p className='title'>Filme e sessão</p>
+                <p className='title'>Filme e sessão:</p>
                 <p className='info'>{data.movie.title}</p>
                 <p className='info'>{data.day.date + " " + data.name}</p>
-                <p className='title'>Ingressos</p>
+                <p className='title'>Ingressos:</p>
                 {ids.sort((a, b)=>{return a-b}).map(id=>{
                     return (<p className='info'>Assento {id}</p>)
                 })}
-                <p className='title'>Comprador</p>
+                <p className='title'>Comprador:</p>
                 <p className='info'>Nome: {name}</p>
                 <p className='info'>CPF: {cpf}</p>
             </div>
@@ -38,22 +38,22 @@ h2{
     font-size: 24px;
     line-height: 28px;
     display: flex;
+    margin-top: 100px;
     margin-bottom: 12px;
     align-items: center;
     justify-content: center;
     text-align: center;
     letter-spacing: 0.04em;
-
     color: #247A6B;
 }
 div{
-    margin-left: 28px;
+    margin-left: 38px;
 }
 .title{
-    margin-top: 13px;
+    margin-top: 20px;
     font-family: 'Roboto',sans-serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 28px;
     display: flex;
     align-items: center;
@@ -64,13 +64,13 @@ div{
 .info{
     font-family: 'Roboto',sans-serif;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 17px;
     line-height: 26px;
     display: flex;
     align-items: center;
     letter-spacing: 0.04em;
-
     color: #293845;
+    
 }
 a{
     margin-top: 62px;

@@ -137,7 +137,7 @@ input{
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 3px;
-    padding-left: 12px;
+    padding-left: 15px;
     margin-bottom: 10px;
 }
 input::placeholder{
@@ -148,7 +148,6 @@ input::placeholder{
     line-height: 21px;
     display: flex;
     align-items: center;
-
     color: #AFAFAF;
 }
 button{

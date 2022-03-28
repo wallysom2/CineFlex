@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import React from 'react';
-import image from "../assets/img/logo.png";
 
 export default function Top(){
     return(
@@ -19,7 +18,7 @@ const Header = styled.div`
     height: 67px;
     background-color: #C3CFD9;
 
-h1{
+    & h1{
     font-family: 'Roboto', sans-serif;
 
     font-size: 34px;
