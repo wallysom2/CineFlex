@@ -89,9 +89,14 @@ span{
 
     background: #E8833A;
     border-radius: 3px;
+    cursor: pointer;
 
     color: #FFFFFF;
 }
+@media (min-width: 600px) {
+        max-width: 600px;
+        margin: 0 auto;
+    }
 `
     const TopSession = styled.div`
     display: flex;

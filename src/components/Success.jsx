@@ -48,6 +48,11 @@ h2{
 }
 div{
     margin-left: 38px;
+    @media (min-width: 600px) {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
 }
 .title{
     margin-top: 20px;
@@ -93,6 +98,7 @@ a p{
     justify-content: center;
     text-align: center;
     letter-spacing: 0.04em;
+    cursor: pointer;
 
     color: #FFFFFF;
 

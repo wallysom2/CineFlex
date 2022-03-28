@@ -39,6 +39,10 @@ const Posters = styled.div`
     flex-wrap: wrap;
     width: 100vw;
     height: 100vh;
+    @media (min-width: 600px) {
+        max-width: 700px;
+        margin: 0 auto;
+    }
 `
 
 const Poster = styled.div`

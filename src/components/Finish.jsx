@@ -167,7 +167,7 @@ button{
     text-align: center;
     letter-spacing: 0.04em;
     border: none;
-    
+    cursor: pointer;
     color: #FFFFFF;
 
 }
@@ -206,12 +206,15 @@ p {
 }
 .available{
     background: #C3CFD9;
+    cursor: pointer;
 }
 .unavailable{
     background: #FBE192;
+    cursor: not-allowed;
 }
 .selected{
     background: #8DD7CF;
+    cursor: pointer;
 }
 div{
     width: 100%;
