@@ -9,22 +9,22 @@ export default function Movies() {
 
     useEffect(() => {
         const promise = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
-        promise.then((resposta) => {
-            setMovies(resposta.data)
+        promise.then((answer) => {
+            setMovies(answer.data)
         })
         promise.catch()
     }, []);
 
     return (
         <>
-            <TopoFilme>
+            <TopMovie>
                 <p>Selecione o filme</p>
-            </TopoFilme>
+            </TopMovie>
             <Posters>
-                {Movies.map(filme =>
-                <Link to={`/filme/${filme.id}`}>
+                {Movies.map(movie =>
+                <Link to={`/movie/${movie.id}`}>
                     <Poster >
-                        <img src={filme.posterURL} alt={filme.title} />
+                        <img src={movie.posterURL} alt={movie.title} />
                     </Poster>
                 </Link>
                 )}
@@ -57,7 +57,7 @@ const Poster = styled.div`
 }
 `
 
-const TopoFilme = styled.div`
+const TopMovie = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;

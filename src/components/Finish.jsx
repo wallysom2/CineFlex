@@ -7,50 +7,50 @@ import {cpfMask} from "./Mask"
 import Rodape from './Rodape';
 
 export default function Finish(){
-    const { idSessao } = useParams();
-    const [assentos, setAssentos] = useState([]);
-    const [nome, setNome] = useState('');
+    const { idSession } = useParams();
+    const [seats, setSeats] = useState([]);
+    const [name, setName] = useState('');
     const [CPF, setCPF] = useState('')
     const [ids, setIds] = useState([])
     const [data, setData] = useState([]);
-    const [numeroCadeiras, setNumeroCadeiras] = useState([]);
+    const [numberChairs, setNumberChairs] = useState([]);
     const [infos, setInfos] = useState([]);
     const navigate = useNavigate();
 
     
     useEffect(() => {
-    const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`)
-    promise.then((resposta) => {
-        setAssentos(resposta.data.seats);
-        setData(resposta.data);
-        setInfos({titulo: resposta.data.movie.title, poster: resposta.data.movie.posterURL, horario: resposta.data.name, diaSemana: resposta.data.day.weekday})
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`)
+    promise.then((answer) => {
+        setSeats(answer.data.seats);
+        setData(answer.data);
+        setInfos({title: answer.data.movie.title, poster: answer.data.movie.posterURL, schedule: answer.data.name, dayWeek: answer.data.day.weekday})
     })
     promise.catch()
-}, [idSessao]);
+}, [idSession]);
 
-    function escolhiAssento(selecionado, id, numeroCadeira){
-        assentos[id*1-1].selecionado = selecionado;
+    function choseSeat(selected, id, numberChair){
+        seats[id*1-1].selected = selected;
 
         if(ids.length>0 && ids.join(' ').includes(id))setIds(ids.filter(ids=>{return ids!==id}));
         else{
             setIds([...ids, id]);
         }
-        if(numeroCadeiras.length>0 && numeroCadeiras.join(' ').includes(numeroCadeira))setNumeroCadeiras(numeroCadeiras.filter(numeroCadeiras=>{return numeroCadeiras!==numeroCadeira}));
+        if(numberChairs.length>0 && numberChairs.join(' ').includes(numberChair))setNumberChairs(numberChairs.filter(numberChairs=>{return numberChairs!==numberChair}));
         else{
-            setNumeroCadeiras([...numeroCadeiras, numeroCadeira]);
+            setNumberChairs([...numberChairs, numberChair]);
         }
     }
-    function fazerLogin (event) {
+    function login (event) {
         event.preventDefault();
-        if(nome!==''&& CPF.length===14 && ids.length!==0){
-		const requisicao = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
-            ids: numeroCadeiras,
-            name: nome,
+        if(name!==''&& CPF.length===14 && ids.length!==0){
+		const request = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+            ids: numberChairs,
+            name: name,
             cpf: CPF
         });
-        requisicao.then(()=>{
+        request.then(()=>{
             navigate("/Success", {
-            state: {nome: nome, cpf: CPF, ids:ids, data: data},
+            state: {name: name, cpf: CPF, ids:ids, data: data},
         })
     })
 	}
@@ -61,40 +61,40 @@ export default function Finish(){
             <TopFinish>
                 <p>Selecione o(s) assento(s)</p>
             </TopFinish>
-            <Assentos >
-                {assentos.map(assento =>
+            <Seats >
+                {seats.map(assento =>
                 <>
                     {!assento.isAvailable?
-                        <p className="indisponivel" >{assento.name}</p>
-                        : assento.selecionado?
-                        <p className="selecionado" onClick={()=>escolhiAssento(!assento.selecionado, assento.name, assento.id)}>{assento.name}</p>
+                        <p className="unavailable" >{assento.name}</p>
+                        : assento.selected?
+                        <p className="selected" onClick={()=>choseSeat(!assento.selected, assento.name, assento.id)}>{assento.name}</p>
                         :
-                        <p className="disponivel" onClick={()=>escolhiAssento(!assento.selecionado, assento.name, assento.id)}>{assento.name}</p>
+                        <p className="available" onClick={()=>choseSeat(!assento.selected, assento.name, assento.id)}>{assento.name}</p>
 
                     }
                 </>
                 )}
-            </Assentos>
-            <Assentos>
+            </Seats>
+            <Seats>
                 <div>
-                    <p className='selecionado'> </p>
-                    <p className='disponivel'> </p>
-                    <p className='indisponivel'> </p>
+                    <p className='selected'> </p>
+                    <p className='available'> </p>
+                    <p className='unavailable'> </p>
                     <div>
                         <em>Selecionado</em>
                         <em>Disponível</em>
                         <em>Indisponível</em>
                     </div>
                 </div>
-            </Assentos>
-            <Entradas>
-                <form onSubmit={fazerLogin}>
+            </Seats>
+            <Entries>
+                <form onSubmit={login}>
                     <p>Nome do comprador:</p>
                     <input 
                     type="text" 
                     placeholder='Digite seu nome...'
-                    onChange={e => setNome(e.target.value)}
-                    value={nome}
+                    onChange={e => setName(e.target.value)}
+                    value={name}
                     required
                     ></input>
 
@@ -108,14 +108,14 @@ export default function Finish(){
                     ></input>
                     <button type="submit">Reservar assento(s)</button>
                 </form>
-            </Entradas>
+            </Entries>
             <Rodape info={infos}></Rodape>
         </>
     )
 }
 
-const Entradas = styled.div`
-margin-top: 42px;
+const Entries = styled.div`
+margin-top: 72px;
 margin-bottom: 167px;
 display: flex;
 justify-content: center;
@@ -126,6 +126,7 @@ p{
     line-height: 21px;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 
     color: #293845;
 }
@@ -136,6 +137,8 @@ input{
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 3px;
+    padding-left: 12px;
+    margin-bottom: 10px;
 }
 input::placeholder{
     font-family: 'Roboto', sans-serif;
@@ -149,13 +152,13 @@ input::placeholder{
     color: #AFAFAF;
 }
 button{
-    margin: 57px auto; 
-display: flex;
-justify-content: center;
-width: 225px;
-height: 42px;
-background: #E8833A;
-border-radius: 3px;
+    margin: 45px auto; 
+    display: flex;
+    justify-content: center;
+    width: 225px;
+    height: 42px;
+    background: #E8833A;
+    border-radius: 3px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 18px;
@@ -164,13 +167,14 @@ border-radius: 3px;
     align-items: center;
     text-align: center;
     letter-spacing: 0.04em;
+    border: none;
     
     color: #FFFFFF;
 
 }
 `
 
-const Assentos = styled.div`
+const Seats = styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
@@ -201,13 +205,13 @@ p {
 
     color: #000000;
 }
-.disponivel{
+.available{
     background: #C3CFD9;
 }
-.indisponivel{
+.unavailable{
     background: #FBE192;
 }
-.selecionado{
+.selected{
     background: #8DD7CF;
 }
 div{

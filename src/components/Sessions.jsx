@@ -6,31 +6,31 @@ import { Link, useParams } from "react-router-dom";
 import Rodape from './Rodape';
 
 export default function Sessions(){
-    const { idFilme } = useParams();
-    const [horarios, setHorarios] = useState([]);
+    const { idMovie } = useParams();
+    const [schedules, setSchedules] = useState([]);
     const [infos, setInfos] = useState([]);
 
     useEffect(() => {
-    const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`)
-    promise.then((resposta) => {
-        setHorarios(resposta.data.days)
-        setInfos({titulo:resposta.data.title, poster:resposta.data.posterURL})
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`)
+    promise.then((answer) => {
+        setSchedules(answer.data.days)
+        setInfos({title:answer.data.title, poster:answer.data.posterURL})
     })
     promise.catch()
-}, [idFilme]);
+}, [idMovie]);
     return infos!==''?(
         <>
-            <TopSessao>
+            <TopSession>
                 <p>Selecione o horário</p>
-            </TopSessao>
+            </TopSession>
             <Data>
-            {horarios.map(horario =>
+            {schedules.map(schedule =>
             <>
-                    <p>{horario.weekday} - {horario.date}</p>
+                    <p>{schedule.weekday} - {schedule.date}</p>
                     <div>
-                        {horario.showtimes.map(sessao=>
-                        <Link to={`/sessao/${sessao.id}`}>
-                            <span>{sessao.name}</span>
+                        {schedule.showtimes.map(session=>
+                        <Link to={`/session/${session.id}`}>
+                            <span>{session.name}</span>
                         </Link>
                             )}
                     </div>
@@ -93,7 +93,7 @@ span{
     color: #FFFFFF;
 }
 `
-    const TopSessao = styled.div`
+    const TopSession = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;

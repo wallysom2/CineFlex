@@ -4,16 +4,16 @@ import React from 'react';
 
 export default function Rodape(infos){
     const{info} = infos;
-    const {titulo, poster, horario, diaSemana} = info
+    const {title, poster, schedule, dayWeek} = info
     return (
         <Footer>
         <div>
-            <img src={poster} alt={titulo} />
+            <img src={poster} alt={title} />
         </div>
-        {horario?
-        <p>{titulo}<br/>{diaSemana} - {horario}</p>
+        {schedule?
+        <p>{title}<br/>{dayWeek} - {schedule}</p>
         :
-        <p>{titulo}</p>
+        <p>{title}</p>
         }
     </Footer>
     )
@@ -23,7 +23,7 @@ const Footer = styled.div`
     align-items: center;
     position: fixed;
     width: 100vw;
-    height: 117px;
+    height: 110px;
     left: 0;
     bottom: 0;
 
@@ -48,7 +48,7 @@ p{
     margin-left: 14px;
     font-family: 'Roboto',sans-serif;
     font-weight: 400;
-    font-size: 26px;
+    font-size: 18px;
     line-height: 30px;
     display: flex;
     align-items: center;

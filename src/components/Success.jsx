@@ -4,31 +4,31 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Success(){
     const { state } = useLocation();
-    const {nome, cpf, ids, data} = state;
+    const {name, cpf, ids, data} = state;
 
     return(
-        <Confirmacao>
+        <Confirmation>
             <h2>Pedido feito com Success!</h2>
             <div>
-                <p className='titulo'>Filme e sessão</p>
+                <p className='title'>Filme e sessão</p>
                 <p className='info'>{data.movie.title}</p>
                 <p className='info'>{data.day.date + " " + data.name}</p>
-                <p className='titulo'>Ingressos</p>
+                <p className='title'>Ingressos</p>
                 {ids.sort((a, b)=>{return a-b}).map(id=>{
                     return (<p className='info'>Assento {id}</p>)
                 })}
-                <p className='titulo'>Comprador</p>
-                <p className='info'>Nome: {nome}</p>
+                <p className='title'>Comprador</p>
+                <p className='info'>Nome: {name}</p>
                 <p className='info'>CPF: {cpf}</p>
             </div>
             <Link to="/">
                 <p>Voltar pra Home</p>
             </Link>
-        </Confirmacao>
+        </Confirmation>
     )
 }
 
-const Confirmacao = styled.div`
+const Confirmation = styled.div`
 margin-top: 67px;
 
 h2{
@@ -49,7 +49,7 @@ h2{
 div{
     margin-left: 28px;
 }
-.titulo{
+.title{
     margin-top: 13px;
     font-family: 'Roboto',sans-serif;
     font-weight: 700;

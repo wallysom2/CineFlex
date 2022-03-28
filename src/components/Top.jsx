@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
+import image from "../assets/img/logo.png";
 
 export default function Top(){
     return(
